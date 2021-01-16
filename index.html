@@ -14,6 +14,7 @@
 <body style="max-width: 600px; margin-left: auto; margin-right: auto;">
     <h1>NaSC Web</h1>
 
+    <div id="status">Downloading...</div>
     <input type="text" id="input" style="width:100%; box-sizing: border-box; display: none; height: 3.5em;"
         placeholder="2x + 5 = 9">
     <div id="result" style="padding: 1em;margin-top: 2em;border-radius: .75em;background: #EEE;"></div>
@@ -56,7 +57,8 @@
             printErr: function (text) {
                 if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
                 console.error(text);
-            },
+            }
+            ,
             setStatus: function (text) {
                 if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
                 if (text === Module.setStatus.last.text) return;
@@ -69,11 +71,6 @@
                     text = m[1];
                 }
                 statusElement.innerHTML = text;
-            },
-            totalDependencies: 0,
-            monitorRunDependencies: function (left) {
-                this.totalDependencies = Math.max(this.totalDependencies, left);
-                Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies - left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
             }
         };
         Module.setStatus('Downloading...');
