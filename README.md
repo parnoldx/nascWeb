@@ -2,3 +2,5 @@
 [![Open preview ready-to-code](https://img.shields.io/badge/Open-Preview-orange)](https://parnold-x.github.io/nascWeb) 
 
 # NaSC Web
+
+https://www.notion.so/NaSC-Web-40e60d10e571431caf199ee67a14fe5b
