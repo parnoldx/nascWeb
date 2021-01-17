@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>NaSC Web</title>
-    <link rel="preload" href="qalc/qalc.js" as="script">
-    <link rel="preload" href="qalc/qalc.wasm" as="fetch">
+    <link rel="preload" href="js/qalc/qalc.js" as="script">
+    <link rel="preload" href="js/qalc/qalc.wasm" as="fetch">
 </head>
 
 
@@ -17,9 +17,15 @@
     <div id="status">Downloading...</div>
     <input type="text" id="input" style="width:100%; box-sizing: border-box; display: none; height: 3.5em;"
         placeholder="2x + 5 = 9">
-    <div id="result" style="padding: 1em;margin-top: 2em;border-radius: .75em;background: #EEE;"></div>
-    <script async type="text/javascript" src="qalc/qalc.js"></script>
-    <script async type="text/javascript" src="js/nascmain.js"></script>
+    <!--<div id="result" style="padding: 1em;margin-top: 2em;border-radius: .75em;background: #EEE;"></div>
+    --> 
+    <div>
+        <div id="editor">content one</div>
+        <div id="result" style="padding: 1em;margin-top: 2em;border-radius: .75em;background: #EEE;">res</div>
+    </div>
+    <script async type="text/javascript" src="js/qalc/qalc.js"></script>
+    <script async type="text/javascript" src="js/split/split.min.js"></script>
+    <script type="text/javascript" src="js/nascmain.js"></script>
 </body>
 
-</html>
+</html>  

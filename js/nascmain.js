@@ -9,7 +9,6 @@ inputEl.oninput = (ev) => {
     free(resultPtr);
     resultEl.textContent = result
 }
-
 var Module = {
     preRun: [],
     postRun: [() => {
@@ -20,11 +19,6 @@ var Module = {
         console.time('new')
         window.calc = newCalculator()
         console.timeEnd('new')
-        console.time('calc x1000')
-        for (let i = 0; i < 1000; i++) {
-            calculate(calc, '1+1', 1000)
-        }
-        console.timeEnd('calc x1000')
        
         inputEl.style.display = "inline-block";
     }],
@@ -57,4 +51,9 @@ var Module = {
     Module.setStatus = function (text) {
         if (text) Module.printErr('[post-exception status] ' + text);
     };
+
+    Split(['#editor', '#result'], {
+        sizes: [70, 30],
+        minSize: 200,
+    });
 };
