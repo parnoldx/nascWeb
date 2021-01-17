@@ -6,25 +6,24 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>NaSC Web</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="preload" href="js/qalc/qalc.js" as="script">
     <link rel="preload" href="js/qalc/qalc.wasm" as="fetch">
 </head>
 
 
-<body style="max-width: 800px; margin-left: auto; margin-right: auto;">
-    <h1>NaSC Web</h1>
-
+<body>
     <div id="status">Downloading...</div>
-    <input type="text" id="input" style="width:100%; box-sizing: border-box; display: none; height: 3.5em;"
-        placeholder="2x + 5 = 9">
+    <input type="text" id="input" class="input" placeholder="2x + 5 = 9">
     <!--<div id="result" style="padding: 1em;margin-top: 2em;border-radius: .75em;background: #EEE;"></div>
     --> 
-    <div>
-        <div id="editor">content one</div>
-        <div id="result" style="padding: 1em;margin-top: 2em;border-radius: .75em;background: #EEE;">res</div>
+    <div class="content">
+        <div id="editor" class="split editor"></div>
+        <div id="result" class="split result">res</div>
     </div>
     <script async type="text/javascript" src="js/qalc/qalc.js"></script>
     <script async type="text/javascript" src="js/split/split.min.js"></script>
+    <script async type="text/javascript" src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
     <script type="text/javascript" src="js/nascmain.js"></script>
 </body>
 

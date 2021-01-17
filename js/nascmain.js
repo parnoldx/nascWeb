@@ -2,6 +2,8 @@ var statusElement = document.getElementById('status');
 const resultEl = document.getElementById('result');
 const inputEl = document.getElementById('input');
 
+
+
 inputEl.oninput = (ev) => {
     const text = ev.target.value;
     const resultPtr = calculate(calc, text, 1000);
@@ -9,8 +11,38 @@ inputEl.oninput = (ev) => {
     free(resultPtr);
     resultEl.textContent = result
 }
+
 var Module = {
-    preRun: [],
+    preRun: [() => {
+        require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
+window.MonacoEnvironment = { getWorkerUrl: () => proxy };
+
+let proxy = URL.createObjectURL(new Blob([`
+	self.MonacoEnvironment = {
+		baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
+	};
+	importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
+`], { type: 'text/javascript' }));
+
+require(["vs/editor/editor.main"], function () {
+	let editor = monaco.editor.create(document.getElementById('editor'), {
+        value: ['2+2'].join('\n'),
+        minimap: {
+		    enabled: false
+        },
+	    scrollBeyondLastLine: false,
+        folding: false,
+        glyphMargin: false,
+        fontSize: 20,
+        automaticLayout: true
+	});
+});
+    Split(['#editor', '#result'], {
+            sizes: [75, 25],
+            gutterSize: 4,
+            minSize: 200,
+        });
+    }],
     postRun: [() => {
         window.calculate = Module.cwrap('calculate', 'number', ['number', 'string', 'number'])
         window.newCalculator = Module.cwrap('newCalculator', 'number', [])
@@ -43,17 +75,12 @@ var Module = {
         }
         statusElement.innerHTML = text;
     }
-    };
-    Module.setStatus('Downloading...');
-    window.onerror = function (event) {
+};
+Module.setStatus('Downloading...');
+window.onerror = function (event) {
     // TODO: do not warn on ok events like simulating an infinite loop or exitStatus
     Module.setStatus('Exception thrown, see JavaScript console');
     Module.setStatus = function (text) {
         if (text) Module.printErr('[post-exception status] ' + text);
-    };
-
-    Split(['#editor', '#result'], {
-        sizes: [70, 30],
-        minSize: 200,
-    });
+    };  
 };
