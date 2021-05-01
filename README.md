@@ -4,3 +4,5 @@
 # NaSC Web
 
 https://www.notion.so/NaSC-Web-40e60d10e571431caf199ee67a14fe5b
+
+https://github.com/sharkdp/insect
